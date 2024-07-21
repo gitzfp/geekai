@@ -35,6 +35,9 @@ import (
 
 	"github.com/go-redis/redis/v8"
 
+	"net/http"
+
+	"github.com/gin-contrib/cors"
 	"github.com/lionsoul2014/ip2region/binding/golang/xdb"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
@@ -63,6 +66,42 @@ func (l *AppLifecycle) OnStop(context.Context) error {
 
 func NewAppLifeCycle() *AppLifecycle {
 	return &AppLifecycle{}
+}
+
+// 允许的来源地址列表
+var allowedOrigins = []string{
+	"http://localhost:8888",
+	"http://114.116.224.128",
+}
+
+// 检查请求的来源是否在允许的来源列表中
+func isAllowedOrigin(origin string) bool {
+	for _, allowedOrigin := range allowedOrigins {
+		if origin == allowedOrigin {
+			return true
+		}
+	}
+	return false
+}
+
+// CORS 中间件
+func CORS(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		origin := r.Header.Get("Origin")
+		if isAllowedOrigin(origin) {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+		}
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Length, Content-Type, Chat-Token, Admin-Authorization")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
 }
 
 func main() {
@@ -98,6 +137,13 @@ func main() {
 		// 初始化
 		fx.Invoke(func(s *core.AppServer, client *redis.Client) {
 			s.Init(debug, client)
+			s.Engine.Use(cors.New(cors.Config{
+				AllowOrigins:     []string{"http://localhost:8888"},
+				AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+				AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization", "Chat-Token", "Admin-Authorization"},
+				AllowCredentials: true,
+				MaxAge:           12 * time.Hour,
+			}))
 		}),
 
 		// 初始化数据库

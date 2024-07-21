@@ -154,7 +154,9 @@ func (h *ChatHandler) ChatHandle(c *gin.Context) {
 
 			logger.Info("Receive a message: ", message.Content)
 
-			ctx, cancel := context.WithCancel(context.Background())
+			ctx := context.WithValue(context.Background(), httpRequestKey{}, c.Request)
+			ctx, cancel := context.WithCancel(ctx) // 结合取消功能的上下文
+
 			h.App.ReqCancelFunc.Put(sessionId, cancel)
 			// 回复消息
 			err = h.sendMessage(ctx, session, chatRole, utils.InterfaceToString(message.Content), client)

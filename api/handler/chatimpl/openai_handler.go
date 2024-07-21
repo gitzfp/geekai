@@ -19,12 +19,45 @@ import (
 	"geekai/utils"
 	"html/template"
 	"io"
+	"net/http"
+	"reflect"
 	"strings"
 	"time"
 	"unicode/utf8"
 
 	req2 "github.com/imroc/req/v3"
 )
+
+// 定义一个类型来表示 httpRequest 的键
+type httpRequestKey struct{}
+
+func printContext(ctx context.Context) {
+	if ctx == nil {
+		fmt.Println("Context is nil")
+		return
+	}
+
+	if ctx == context.Background() {
+		fmt.Println("Context: context.Background")
+	} else if ctx == context.TODO() {
+		fmt.Println("Context: context.TODO")
+	} else {
+		// 尝试获取 httpRequest
+		request, ok := ctx.Value(httpRequestKey{}).(*http.Request)
+		if ok {
+			fmt.Println("httpRequest:")
+			fmt.Println("URL:", request.URL.String())
+			fmt.Println("Method:", request.Method)
+			for name, values := range request.Header {
+				for _, value := range values {
+					fmt.Printf("Header: %s: %s\n", name, value)
+				}
+			}
+		} else {
+			fmt.Println("Unknown context type and no httpRequest found")
+		}
+	}
+}
 
 // OPenAI 消息发送实现
 func (h *ChatHandler) sendOpenAiMessage(
@@ -39,6 +72,21 @@ func (h *ChatHandler) sendOpenAiMessage(
 	promptCreatedAt := time.Now() // 记录提问时间
 	start := time.Now()
 	var apiKey = model.ApiKey{}
+	// 从 context 中提取请求信息
+	// 打印 context 对象
+	fmt.Println("打印 ctx 对象:")
+	printContext(ctx)
+
+	// 打印 ApiRequest 结构体中的字段
+	logger.Info("请求信息：")
+	reqValue := reflect.ValueOf(req)
+	reqType := reqValue.Type()
+	for i := 0; i < reqValue.NumField(); i++ {
+		field := reqType.Field(i)
+		value := reqValue.Field(i).Interface()
+		logger.Infof("%s: %v", field.Name, value)
+	}
+
 	response, err := h.doRequest(ctx, req, session, &apiKey)
 	logger.Info("HTTP请求完成，耗时：", time.Now().Sub(start))
 	if err != nil {
