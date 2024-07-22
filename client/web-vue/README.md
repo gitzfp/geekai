@@ -1,7 +1,21 @@
-# chatgpt-plus-web
+# TARO
 
-chatgpt-plus 项目前端实现，采用 Vue3 + element-plus 架构。
+https://taro-docs.jd.com/docs/
 
-移动端是采用 Vue3 + Vant 移动开发框架实现的。
+# 环境要求
 
+```
+node： 20.11.1 或以上版本
+npm： 10.2.4 或以上版本
+```
 
+# 安装
+
+```
+使用的是Taro V3.6.34
+npm install -g @tarojs/cli
+
+安装依赖
+yarn install
+
+```

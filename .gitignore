@@ -14,3 +14,13 @@ logs
 *.njsproj
 *.sln
 *.sw?
+
+
+client/web-react/dist/
+client/web-react/deploy_versions/
+client/web-react/.temp/
+client/web-react/.rn_temp/
+client/web-react/node_modules/
+client/web-react/.DS_Store
+client/web-react/.swc
+
