@@ -1,12 +1,13 @@
 import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import { AtButton } from 'taro-ui'
+import useInfoStore from '@/store/useInfoStore';
 import "taro-ui/dist/style/components/button.scss";
 import "taro-ui/dist/style/components/loading.scss";
 import './index.less'
 
 export default function Index() {
-
+  const bears = useInfoStore((state: any) => state.bears)
   useLoad(() => {
     console.log('Page loaded.')
   })
@@ -20,6 +21,7 @@ export default function Index() {
   return (
     <View className='index'>
       <Text>Hello world!</Text>
+      <Text>{bears}</Text>
       <AtButton type='primary' onClick={clickText}>跳转</AtButton>
 
     </View>
