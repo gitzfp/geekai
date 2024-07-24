@@ -18,6 +18,7 @@
     "build:rn": "taro build --type rn",
     "build:qq": "taro build --type qq",
     "build:jd": "taro build --type jd",
+    "build:dd": "taro build --type dd",
     "build:quickapp": "taro build --type quickapp",
     "build:harmony-hybrid": "taro build --type harmony-hybrid",
     "dev:weapp": "npm run build:weapp -- --watch",
@@ -28,6 +29,7 @@
     "dev:rn": "npm run build:rn -- --watch",
     "dev:qq": "npm run build:qq -- --watch",
     "dev:jd": "npm run build:jd -- --watch",
+    "dev:dd": "npm run build:dd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "dev:harmony-hybrid": "npm run build:harmony-hybrid -- --watch",
     "test": "jest"
@@ -44,6 +46,7 @@
     "@tarojs/helper": "3.6.34",
     "@tarojs/plugin-framework-react": "3.6.34",
     "@tarojs/plugin-platform-alipay": "3.6.34",
+    "@tarojs/plugin-platform-alipay-dd": "^0.3.1",
     "@tarojs/plugin-platform-h5": "3.6.34",
     "@tarojs/plugin-platform-harmony-hybrid": "3.6.34",
     "@tarojs/plugin-platform-jd": "3.6.34",

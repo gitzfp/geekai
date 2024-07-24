@@ -2128,6 +2128,11 @@
     acorn-walk "^8.0.0"
     lodash "^4.17.21"
 
+"@tarojs/plugin-platform-alipay-dd@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.npmmirror.com/@tarojs/plugin-platform-alipay-dd/-/plugin-platform-alipay-dd-0.3.1.tgz#ac2f64172eaab4221c73152bb532f6b0a9ac7db3"
+  integrity sha512-pJaCvySs8rfmG/HT3w+WzFyuS+ejJ1dJOW7E7EZ4ZSE6DETQhvlJdWycIPTHGNZlr7zvUP6YMsKTAL+pSKEzQA==
+
 "@tarojs/plugin-platform-alipay@3.6.34":
   version "3.6.34"
   resolved "https://registry.npmmirror.com/@tarojs/plugin-platform-alipay/-/plugin-platform-alipay-3.6.34.tgz#b6c7620e72d8dc0c6778eb52e50b9a24ab0e4637"

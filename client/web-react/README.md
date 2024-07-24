@@ -23,6 +23,7 @@ npm install -g @tarojs/cli
 yarn install
 
 3、启动项目
-yarn dev:h5
+微信：yarn dev:weapp
+钉钉：yarn dev:dd
 
 ```
