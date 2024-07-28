@@ -19,9 +19,24 @@ const request = async (url: string, method, data = {}, header ={}) => {
         // 可以在这里添加其他需要的请求头
       },
     });
-    return response.data;
+    if (response.statusCode !== 200) {
+      throw {
+        message: response.statusCode === 403 ? '非法请求' : '请求失败',
+        code: -1,
+        data: response
+      }
+    }
+    if (response?.data?.code === 0) {
+      return response.data;
+    }
+    if (response?.data?.code === 400) {
+      // todo 过期 需要把登录信息清除
+    }
+    throw {
+      code: response?.data?.code || -1,
+      message: response?.data?.message || '请求失败',
+    }
   } catch (error) {
-    console.error('Request error:', error);
     throw error;
   }
 };

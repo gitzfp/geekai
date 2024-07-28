@@ -25,5 +25,5 @@ yarn install
 3、启动项目
 微信：yarn dev:weapp
 钉钉：yarn dev:dd
-
+H5运行：一定要 localhost:8888
 ```

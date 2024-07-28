@@ -18,9 +18,22 @@ export default function Index() {
     {
         manual: true,
         onSuccess: (res) => {
+          // todo 存储用户登录成功的token
           console.log('>>>>>>>>>res', res)
+          Taro.showToast({
+            title: '登录成功',
+            icon: 'success'
+          })
+          Taro.reLaunch({
+            url: '/pages/index/index',
+          })
         },
-        onError: (err) => { console.log('>>>>>>>>>err', err) }
+        onError: (err) => {
+          Taro.showToast({
+            title: err.message,
+            icon: 'error'
+          })
+        }
     }
 );
 
