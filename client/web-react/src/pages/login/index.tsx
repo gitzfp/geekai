@@ -6,6 +6,7 @@ import './index.less'
 import { useRequest } from 'ahooks';
 import { login } from '@/request/login.js'
 import Taro from '@tarojs/taro'
+import { setUserToken } from '@/store/session.js'
 
 export default function Index() {
   const [username, setUsername] = useState('18575670125')
@@ -20,7 +21,7 @@ export default function Index() {
         manual: true,
         onSuccess: (res) => {
           // todo 存储用户登录成功的token
-          console.log('>>>>>>>>>res', res)
+          setUserToken(res.data)
           Taro.showToast({
             title: '登录成功',
             icon: 'success'

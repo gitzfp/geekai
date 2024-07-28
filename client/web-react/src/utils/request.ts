@@ -1,6 +1,7 @@
 import Taro from '@tarojs/taro';
 
 const BASE_URL = "http://114.116.224.128:5678"; // 替换为你的 API 基础 URL
+import { getUserToken, removeUserToken, removeAdminToken, getAdminToken } from '@/store/session.js'
 
 // process.env.TARO_APP_API
 const request = async (url: string, method, data = {}, header ={}) => {
@@ -12,8 +13,8 @@ const request = async (url: string, method, data = {}, header ={}) => {
       header: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json',
-        'Admin-Authorization': '',
-        'Authorization': '',
+        'Admin-Authorization': getAdminToken(),
+        'Authorization': getUserToken(),
         'Chat-Token': '',
         ...header
         // 可以在这里添加其他需要的请求头
@@ -31,6 +32,8 @@ const request = async (url: string, method, data = {}, header ={}) => {
     }
     if (response?.data?.code === 400) {
       // todo 过期 需要把登录信息清除
+      removeUserToken()
+      removeAdminToken()
     }
     throw {
       code: response?.data?.code || -1,
