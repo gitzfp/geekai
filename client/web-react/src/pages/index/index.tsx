@@ -2,8 +2,6 @@ import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import { AtButton } from 'taro-ui'
 import useInfoStore from '@/store/useInfoStore';
-import "taro-ui/dist/style/components/button.scss";
-import "taro-ui/dist/style/components/loading.scss";
 import './index.less'
 
 export default function Index() {
