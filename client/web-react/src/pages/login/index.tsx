@@ -5,6 +5,7 @@ import { useState } from 'react'
 import './index.less'
 import { useRequest } from 'ahooks';
 import { login } from '@/request/login.js'
+import Taro from '@tarojs/taro'
 
 export default function Index() {
   const [username, setUsername] = useState('18575670125')
