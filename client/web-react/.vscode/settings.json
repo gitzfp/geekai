@@ -1,4 +1,6 @@
 {
+    "editor.formatOnType": true, // 控制编辑器在键入一行后是否自动格式化该行
+    "editor.formatOnSave": true, // 在保存时格式化文档
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit",
         "source.fixAll.stylelint": "explicit"

@@ -1,55 +1,56 @@
-
-import Taro from '@tarojs/taro'
-
+import Taro from "@tarojs/taro";
 
 const UserTokenKey = "Authorization";
-const AdminTokenKey = "Admin-Authorization"
-
+const AdminTokenKey = "Admin-Authorization";
 
 export function getUserToken() {
-  try {
-    const value = Taro.getStorageSync(UserTokenKey)
-    return value || ''
-  } catch (e) {
-    // Do something when catch error
-  }
-  return ''
+    try {
+        const value = Taro.getStorageSync(UserTokenKey);
+        return value || "";
+    } catch (e) {
+        // Do something when catch error
+    }
+    return "";
 }
 
 export function setUserToken(token) {
     try {
-      Taro.setStorageSync(UserTokenKey, token)
-    } catch (e) { }
+        Taro.setStorageSync(UserTokenKey, token);
+    } catch (e) {
+        // Do something when catch error
+    }
 }
 
 export function removeUserToken() {
     try {
-      Taro.removeStorageSync(UserTokenKey)
+        Taro.removeStorageSync(UserTokenKey);
     } catch (e) {
-      // Do something when catch error
+        // Do something when catch error
     }
 }
 
 export function getAdminToken() {
     try {
-      const value = Taro.getStorageSync(AdminTokenKey)
-      return value || ''
+        const value = Taro.getStorageSync(AdminTokenKey);
+        return value || "";
     } catch (e) {
-      // Do something when catch error
+        // Do something when catch error
     }
-    return ''
+    return "";
 }
 
 export function setAdminToken(token) {
     try {
-      Taro.setStorageSync(AdminTokenKey, token)
-    } catch (e) { }
+        Taro.setStorageSync(AdminTokenKey, token);
+    } catch (e) {
+        // Do something when catch error
+    }
 }
 
 export function removeAdminToken() {
     try {
-      Taro.removeStorageSync(AdminTokenKey)
+        Taro.removeStorageSync(AdminTokenKey);
     } catch (e) {
-      // Do something when catch error
+        // Do something when catch error
     }
 }
