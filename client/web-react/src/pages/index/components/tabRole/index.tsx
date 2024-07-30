@@ -3,7 +3,7 @@ import { useRequest } from "ahooks";
 import { getRoleList } from "@/request/role.js";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import "./index.less";
+import "./index.scss";
 
 export default function Index() {
     const [roleList, setRoleList] = useState([]);

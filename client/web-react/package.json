@@ -65,7 +65,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "taro-ui": "^3.3.0",
-    "zustand": "^4.5.4"
+    "zustand": "^4.5.4",
+    "taro-hooks": "^1.5.10"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
@@ -80,6 +81,7 @@
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
+    "babel-plugin-import": "^1.13.3",
     "babel-preset-taro": "3.6.34",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^9.1.0",
